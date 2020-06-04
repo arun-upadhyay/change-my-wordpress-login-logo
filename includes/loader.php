@@ -29,8 +29,8 @@ class CMYWLL_Change_My_Login_Logo {
 	 */
 	function cmywll_load_wp_media_files() {
 		wp_enqueue_media();
-		wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . '/css/bootstrap.css', array(), 20141119 );
-		wp_enqueue_script( 'bootstrap', plugin_dir_url( __FILE__ ) . '/js/bootstrap.min.js', array( 'jquery' ), '20120206', true );
+		wp_enqueue_style( 'bootstrap-css', "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" );
+		wp_enqueue_script( 'bootstrap-js', "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" );
 	}
 }
 
