@@ -16,10 +16,11 @@ class CMYWLL_New_Login_Logo {
 	 * Update wordpress login logo css.
 	 */
 	function cmywll_change_wp_login_logo() {
-		$location = esc_url( get_option( CMYWLL_Option_Constants::CHANGE_MY_LOGIN_LOGO_URL ) );
-		$width    = get_option( CMYWLL_Option_Constants::CHANGE_MY_LOGIN_LOGO_WIDTH );
-		$height   = get_option( CMYWLL_Option_Constants::CHANGE_MY_LOGIN_LOGO_HEIGHT );
-		if ( wp_http_validate_url( $location ) !== false ) {
+		$location = esc_url( trim( get_option( CMYWLL_Option_Constants::CHANGE_MY_LOGIN_LOGO_URL ) ) );
+		$width    = trim( get_option( CMYWLL_Option_Constants::CHANGE_MY_LOGIN_LOGO_WIDTH ) );
+		$height   = trim( get_option( CMYWLL_Option_Constants::CHANGE_MY_LOGIN_LOGO_HEIGHT ) );
+		$bool     = wp_http_validate_url( $location ) !== false && ! empty( $width ) && ! empty( $height );
+		if ( $bool ) {
 			?>
             <style type="text/css">
                 #login h1 a, .login h1 a {

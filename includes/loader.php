@@ -12,8 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CMYWLL_Change_My_Login_Logo {
 
 	function __construct() {
+
 		add_action( 'admin_menu', [ $this, 'cmywll_add_menu_option_to_wp_admin_dashboard' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'cmywll_load_wp_media_files' ] );
+
 	}
 
 	/**
@@ -29,8 +31,8 @@ class CMYWLL_Change_My_Login_Logo {
 	 */
 	function cmywll_load_wp_media_files() {
 		wp_enqueue_media();
-		wp_enqueue_style( 'bootstrap-css', "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" );
-		wp_enqueue_script( 'bootstrap-js', "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" );
+		wp_enqueue_style( 'bootstrap-css', plugin_dir_url( __FILE__ ) . '/css/bootstrap.min.css' );
+		wp_enqueue_script( 'bootstrap-js', plugin_dir_url( __FILE__ ) . '/js/bootstrap.min.js' );
 	}
 }
 

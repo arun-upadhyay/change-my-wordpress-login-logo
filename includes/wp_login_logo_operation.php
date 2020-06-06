@@ -1,12 +1,15 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+	exit( 'Access denied ! Please Login' );
+}
 
 function cmywll_change_my_login_logo_operation() {
+
 	$message = "";
-	if ( isset( $_POST, $_POST['change-my-wordpress-login-logo-nonce'] ) ) {
+	$bool    = $_POST['change-my-wordpress-login-logo-nonce-field'] && wp_verify_nonce( $_POST['change-my-wordpress-login-logo-nonce-field'],
+			'change-my-wordpress-login-logo-nonce-action' ) && current_user_can( 'edit_posts' ) === true;
+	if ( $bool ) {
 		$height     = sanitize_text_field( $_POST['logo-height'] );
 		$width      = sanitize_text_field( $_POST['logo-width'] );
 		$location   = sanitize_text_field( $_POST['logo_file_location'] );
@@ -49,7 +52,8 @@ function cmywll_change_my_login_logo_operation() {
         </br>
         <div class='col-md-7 col-md-offset-4'>
             <form action='' method='POST' name='login_logo_form'>	
-                " . wp_nonce_field( 'change-my-wordpress-login-logo-nonce', 'change-my-wordpress-login-logo-nonce' ) . "           
+                " . wp_nonce_field( 'change-my-wordpress-login-logo-nonce-action', 'change-my-wordpress-login-logo-nonce-field' ) . "        
+				   
              <div class='form-group row'>
                     <label for='inputLogoHeight' class='col-sm-2 col-form-label'>Logo Image</label>
                     <div class='col-sm-10'>
@@ -119,4 +123,3 @@ function cmywll_change_my_login_logo_operation() {
 function cmywll_change_my_login_logo_validation_message( $class_name, $message ) {
 	return "<div class='$class_name' role='alert' style='width: 50%; margin-left: 180px'>$message</div>";
 }
-

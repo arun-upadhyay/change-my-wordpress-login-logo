@@ -9,9 +9,11 @@ Author URI: arunupadhayay.com.np
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+	exit( 'Access denied ! Please Login' );
+}
 
+
+include_once( ABSPATH . 'wp-includes/pluggable.php' );
 require_once plugin_dir_path( __FILE__ ) . 'includes/loader.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/wp_login_logo_operation.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/option_constants.php';
