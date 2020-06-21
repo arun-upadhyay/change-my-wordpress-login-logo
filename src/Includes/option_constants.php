@@ -1,10 +1,16 @@
 <?php
 
+namespace ChangeMyAdminLoginLogo\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-class CMYWLL_Option_Constants {
+/**
+ * Class Option_Constants
+ * @package ChangeMyAdminLoginLogo\Includes
+ */
+class Option_Constants {
 	/**
 	 * Login url location
 	 */
