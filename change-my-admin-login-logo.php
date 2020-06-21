@@ -22,6 +22,8 @@ use ChangeMyAdminLoginLogo\Includes\Option_Constants;
 $cMYWLL_Change_My_Login_Logo = new Loader();
 $cMYWLL_Change_My_Login_Logo = new Change_Admin_Login();
 
+define( "MAIN_FILE", plugin_basename( __FILE__ ) );
+
 /**
  * Activate plugin
  */

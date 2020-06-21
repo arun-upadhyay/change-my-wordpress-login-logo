@@ -4,6 +4,7 @@ namespace ChangeMyAdminLoginLogo\Includes;
 
 use \ChangeMyAdminLoginLogo\Includes\Wp_Login_Logo_Operation;
 use ChangeMyAdminLoginLogo\Includes\Option_Constants;
+use FakerPress\Variable;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -16,12 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Loader {
 	private $wp_login_logo_operation;
+	const PAGE_URL = "cmywll_change_my_login_logo_operation";
 
 	function __construct() {
 		$this->wp_login_logo_operation = new Wp_Login_Logo_Operation();
 		add_action( 'admin_menu', [ $this, 'add_menu_option_to_wp_admin_dashboard' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_wp_media_files' ] );
-
+		add_action( 'admin_menu', 'wpplugin_settings_pages' );
 
 	}
 
@@ -33,9 +35,30 @@ class Loader {
 		add_menu_page( "Login Logo", "Login Logo", "edit_posts",
 			Option_Constants::MENU_IDENTIFIER, [
 				$this->wp_login_logo_operation,
-				'cmywll_change_my_login_logo_operation'
+				self::PAGE_URL
 			], 'dashicons-admin-links', 10 );
+
+		add_filter( 'plugin_action_links_' . MAIN_FILE, [
+			$this,
+			'add_plugin_page_settings_link'
+		] );
 	}
+
+	/**
+	 * Adding setting page to wordpress plugin
+	 *
+	 * @param $links
+	 *
+	 * @return array
+	 */
+	function add_plugin_page_settings_link( $links ) {
+		$links[] = '<a href="' .
+		           admin_url( 'admin.php?page=' . self::PAGE_URL ) .
+		           '">' . 'Settings' . '</a>';
+
+		return $links;
+	}
+
 
 	/**
 	 * Add Footer to admin dashboard page.
