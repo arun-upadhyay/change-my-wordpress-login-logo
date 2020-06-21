@@ -4,7 +4,6 @@ namespace ChangeMyAdminLoginLogo\Includes;
 
 use \ChangeMyAdminLoginLogo\Includes\Wp_Login_Logo_Operation;
 use ChangeMyAdminLoginLogo\Includes\Option_Constants;
-use FakerPress\Variable;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
