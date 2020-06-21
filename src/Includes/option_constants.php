@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package ChangeMyAdminLoginLogo\Includes
  */
 class Option_Constants {
+
+	const INFO = 'cmywll_info';
 	/**
 	 * Login url location
 	 */

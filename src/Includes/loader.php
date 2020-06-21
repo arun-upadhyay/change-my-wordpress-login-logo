@@ -20,8 +20,9 @@ class Loader {
 	function __construct() {
 		$this->wp_login_logo_operation = new Wp_Login_Logo_Operation();
 		add_action( 'admin_menu', [ $this, 'add_menu_option_to_wp_admin_dashboard' ] );
-
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_wp_media_files' ] );
+
+
 	}
 
 	/**
@@ -36,6 +37,23 @@ class Loader {
 			], 'dashicons-admin-links', 10 );
 	}
 
+	/**
+	 * Add Footer to admin dashboard page.
+	 *
+	 * @return string
+	 */
+	function add_footer_to_admin_dashboard( $footer_text ) {
+
+		$footer_text_arr = get_option( Option_Constants::INFO );
+		if ( empty( $footer_text_arr ) ) {
+			return $footer_text;
+		}
+		$plugin_name = $footer_text_arr['Name'];
+		$author      = $footer_text_arr['Author'];
+		$author_uri  = $footer_text_arr['AuthorURI'];
+
+		return "$plugin_name | <a href= '$author_uri' target='_blank'> $author </a>";
+	}
 
 	/**
 	 * Load media files
@@ -47,6 +65,7 @@ class Loader {
 			wp_register_style( 'wpplugin-frontend-js-library', plugin_dir_url( __FILE__ ) . '/js/bootstrap.min.js', [], time() );
 			wp_enqueue_style( 'wpplugin-frontend-style-library' );
 			wp_enqueue_style( 'wpplugin-frontend-js-library' );
+			add_filter( 'admin_footer_text', [ $this, 'add_footer_to_admin_dashboard' ], 10, 1 );
 		}
 	}
 }

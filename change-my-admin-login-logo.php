@@ -21,15 +21,29 @@ use ChangeMyAdminLoginLogo\Includes\Option_Constants;
 
 $cMYWLL_Change_My_Login_Logo = new Loader();
 $cMYWLL_Change_My_Login_Logo = new Change_Admin_Login();
+
+/**
+ * Activate plugin
+ */
+function cmywll_activate_on_change_my_login_logo() {
+	if ( ! get_option( Option_Constants::INFO ) ) {
+		add_option( Option_Constants::INFO, get_plugin_data( __FILE__ ) );
+	}
+}
+
+register_activation_hook( __FILE__, 'cmywll_activate_on_change_my_login_logo' );
+
 /**
  * Deactivate hook
  */
 function cmywll_deactivate_on_change_my_login_logo() {
 	$options_array =
 		[
+			Option_Constants::INFO,
 			Option_Constants::CHANGE_MY_LOGIN_LOGO_URL,
 			Option_Constants::CHANGE_MY_LOGIN_LOGO_WIDTH,
 			Option_Constants::CHANGE_MY_LOGIN_LOGO_HEIGHT
+
 		];
 	foreach ( $options_array as $option ) {
 		delete_option( $option );
