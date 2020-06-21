@@ -23,4 +23,9 @@ class Option_Constants {
 	 * Logo width
 	 */
 	const CHANGE_MY_LOGIN_LOGO_WIDTH = 'cmywll_change_my_login_url_width';
+
+	/**
+	 * Hook name
+	 */
+	const MENU_IDENTIFIER = "cmywll_change_my_login_logo_operation";
 }

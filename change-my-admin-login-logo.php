@@ -19,10 +19,8 @@ use ChangeMyAdminLoginLogo\Includes\Loader;
 use ChangeMyAdminLoginLogo\Includes\Change_Admin_Login;
 use ChangeMyAdminLoginLogo\Includes\Option_Constants;
 
-
 $cMYWLL_Change_My_Login_Logo = new Loader();
 $cMYWLL_Change_My_Login_Logo = new Change_Admin_Login();
-
 /**
  * Deactivate hook
  */
